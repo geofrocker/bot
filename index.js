@@ -1,14 +1,13 @@
 import { process } from '/env.js'
-import { Configuration, OpenAIApi } from 'openai'
-
+import ai from 'https://cdn.jsdelivr.net/npm/openai@3.3.0/+esm'
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 
-const configuration = new Configuration({
+const configuration = new ai.Configuration({
     apiKey: OPENAI_API_KEY
 })
 
-const openai = new OpenAIApi(configuration)
+const openai = new ai.OpenAIApi(configuration)
 
 const conversationArr = [
 ];
