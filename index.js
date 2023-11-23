@@ -1,4 +1,14 @@
-const OPENAI_API_URL = '/get-response';
+import { process } from '/env.js'
+import { Configuration, OpenAIApi } from 'openai'
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+
+const configuration = new Configuration({
+    apiKey: OPENAI_API_KEY
+})
+
+const openai = new OpenAIApi(configuration)
 
 const conversationArr = [
 ];
@@ -20,15 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function fetchReply() {
     try {
-        const response = await fetch(OPENAI_API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ messages: conversationArr })
-        });
-        const responseData = await response.json();
-        conversationArr.push({role: 'assistant', content: responseData.response});
+        const response = await openai.createChatCompletion({
+            model: 'gpt-4-1106-preview',
+            messages: conversationArr,
+        })
+        conversationArr.push({role: 'assistant', content: response.data.choices[0].message.content});
         renderAllResponses();
     } catch (error) {
         console.error('Error fetching response from server:', error);
