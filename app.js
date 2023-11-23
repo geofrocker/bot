@@ -1,5 +1,4 @@
-const OPENAI_API_KEY = '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'
-const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+const OPENAI_API_URL = 'http://localhost:3000/get-response';
 
 const conversationArr = [
 ];
@@ -24,17 +23,12 @@ async function fetchReply() {
         const response = await fetch(OPENAI_API_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENAI_API_KEY}`
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                model: 'gpt-4-1106-preview',
-                messages: conversationArr
-            })
+            body: JSON.stringify({ messages: conversationArr })
         });
-
         const responseData = await response.json();
-        conversationArr.push({role: 'assistant', content: responseData.choices[0].message.content});
+        conversationArr.push({role: 'assistant', content: responseData.response});
         renderAllResponses();
     } catch (error) {
         console.error('Error fetching response from server:', error);
