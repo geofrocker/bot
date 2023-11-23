@@ -1,4 +1,4 @@
-const OPENAI_API_URL = 'http://localhost:3000/get-response';
+const OPENAI_API_URL = '/get-response';
 
 const conversationArr = [
 ];
@@ -36,7 +36,6 @@ async function fetchReply() {
 }
 
 function typewriterEffect(text, element, speed = 50, callback) {
-    console.log("called")
     let i = 0;
     const typeInterval = setInterval(function () {
         element.innerHTML += text.charAt(i);

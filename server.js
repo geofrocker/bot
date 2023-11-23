@@ -23,6 +23,11 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration)
 
 app.use(bodyParser.json());
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
 
 app.post('/get-response', async (req, res) => {
     const conversation = req.body.messages;
