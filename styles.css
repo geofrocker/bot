@@ -1,0 +1,31 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: left;
+    margin: 50px;
+  }
+  
+  #userInput {
+    width: 80%;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  #response {
+    margin-top: 20px;
+  }
+  
+  .assistant-response {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    white-space: pre-line;
+  }
+  
+  .assistant-response p {
+    margin: 0;
+  }
+  
